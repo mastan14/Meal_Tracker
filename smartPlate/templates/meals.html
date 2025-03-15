@@ -1,0 +1,25 @@
+<!-- templates/meals.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Meal Tracker</h1>
+    <form action="{{ url_for('meals.log_meal') }}" method="POST">
+        <input type="text" name="food_name" placeholder="Food Name" required>
+        <input type="number" name="calories" placeholder="Calories" required>
+        <button type="submit">Log Meal</button>
+    </form>
+
+    <h2>Your Meals</h2>
+    <ul>
+        {% for meal in meals %}
+            <li>{{ meal.food_name }} - {{ meal.calories }} kcal</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

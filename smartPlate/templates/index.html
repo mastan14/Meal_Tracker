@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartPlate</title>
+</head>
+<body>
+    <h1>Upload Your Meal</h1>
+    <form action="/image_recognition" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Analyze</button>
+    </form>
+    <img src="{{ image_path }}" alt="Uploaded Image" style="max-width: 300px;">
+    {% if food_items %}
+        <h2>Detected Food Items:</h2>
+        <ul>
+            {% for item in food_items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        
+    {% endif %}
+</body>
+</html>

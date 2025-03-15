@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutritionix Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Search for Nutritional Information</h1>
+    <form action="/nutrix" method="POST">
+        <input type="text" name="food_query" placeholder="Enter a food item (e.g., 1 large apple)" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if nutritional_info %}
+        <h2>Results for "{{ query }}":</h2>
+        <ul>
+            {% for food in nutritional_info %}
+                <li>
+                    <strong>{{ food.food_name }}</strong><br>
+                    Calories: {{ food.nf_calories }} kcal<br>
+                    Carbs: {{ food.nf_total_carbohydrate }}g<br>
+                    Protein: {{ food.nf_protein }}g<br>
+                    Fat: {{ food.nf_total_fat }}g
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
